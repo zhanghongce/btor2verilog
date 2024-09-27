@@ -373,19 +373,13 @@ bool Btor2Verilog::combinational_assignment()
   }
   else if (l_->tag == BTOR2_TAG_rol)
   {
-    size_t amount = l_->args[1];
-    size_t width = sorts_.at(l_->args[0]).w1;
-    std::string top = args_[0] + "[" + std::to_string(width-1) + ":" + std::to_string(width-amount) + "]";
-    std::string bot = args_[0] + "[" + std::to_string(width-amount-1) + ":0]";
-    assign_ = "{" + bot + ", " + top + "]";
+    std::cerr << "Does not current support BTOR2_TAG_rol to Verilog" << std::endl;
+    throw std::exception();
   }
-  else if (l_->tag == BTOR2_TAG_rol)
+  else if (l_->tag == BTOR2_TAG_ror)
   {
-    size_t amount = l_->args[1];
-    size_t width = sorts_.at(l_->args[0]).w1;
-    std::string top = args_[0] + "[" + std::to_string(width-1) + ":" + std::to_string(amount) + "]";
-    std::string bot = args_[0] + "[" + std::to_string(amount-1) + ":0]";
-    assign_ = "{" + bot + ", " + top + "]";
+    std::cerr << "Does not current support BTOR2_TAG_ror to Verilog" << std::endl;
+    throw std::exception();
   }
   else if (l_->tag == BTOR2_TAG_inc)
   {
