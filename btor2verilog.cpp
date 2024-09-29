@@ -259,8 +259,8 @@ bool Btor2Verilog::parse(const char * filename)
       symbols_[l_->id] = sym_;
       // need to update the sort or else we won't be able to wire it correctly
       sorts_[l_->id] = sorts_.at(l_->args[0]);
-      assign_ = "w" + std::to_string(l_->args[0]);
-      wire_assigns_[sym_] = assign_;
+      wire_assigns_[sym_] = symbols_[l_->args[0]]; // need to use symbols here
+                                                   // because it could be a wire/reg etc
     }
     else if (l_->tag == BTOR2_TAG_sort)
     {
